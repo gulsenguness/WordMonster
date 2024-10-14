@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/wordFragment">
+
+    <fragment
+        android:id="@+id/wordFragment"
+        android:name="com.gulsengunes.wordmonster.ui.fragment.WordFragment"
+        android:label="fragment_word"
+        tools:layout="@layout/fragment_word" />
+    <fragment
+        android:id="@+id/learnedFragment"
+        android:name="com.gulsengunes.wordmonster.ui.fragment.LearnedFragment"
+        android:label="fragment_learned"
+        tools:layout="@layout/fragment_learned" />
+    <fragment
+        android:id="@+id/addWordFragment"
+        android:name="com.gulsengunes.wordmonster.ui.fragment.AddWordFragment"
+        android:label="fragment_add_word"
+        tools:layout="@layout/fragment_add_word" />
+    <fragment
+        android:id="@+id/gameFragment"
+        android:name="com.gulsengunes.wordmonster.ui.fragment.GameFragment"
+        android:label="fragment_game"
+        tools:layout="@layout/fragment_game" />
+    <fragment
+        android:id="@+id/scoreFragment"
+        android:name="com.gulsengunes.wordmonster.ui.fragment.ScoreFragment"
+        android:label="fragment_score"
+        tools:layout="@layout/fragment_score" />
+</navigation>
