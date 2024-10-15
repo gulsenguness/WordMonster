@@ -6,16 +6,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.gulsengunes.wordmonster.R
+import com.gulsengunes.wordmonster.databinding.ActivityMainBinding
+import com.gulsengunes.wordmonster.databinding.FragmentAddWordBinding
 
 
 class AddWordFragment : Fragment() {
-
+    private lateinit var binding: FragmentAddWordBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_add_word, container, false)
+        binding = FragmentAddWordBinding.inflate(layoutInflater)
+        return binding.root
     }
 
 }

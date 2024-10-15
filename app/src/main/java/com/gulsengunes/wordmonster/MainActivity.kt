@@ -1,10 +1,8 @@
 package com.gulsengunes.wordmonster
 
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
@@ -19,37 +17,36 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        setupNavController()
+        setupBottomNavigation()
+
+    }
+
+    private fun setupNavController() {
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         navController = navHostFragment.navController
+    }
 
+    private fun setupBottomNavigation() {
         binding.bottomNavigation.setupWithNavController(navController)
+        binding.bottomNavigation.setOnNavigationItemSelectedListener { item ->
+            handleNavigation(item.itemId)
+        }
+    }
 
-        binding.bottomNavigation.setOnNavigationItemSelectedListener { item->
-            when(item.itemId){
-                R.id.wordFragment->{
-                    navController.navigate(R.id.wordFragment)
+    private fun handleNavigation(itemId: Int): Boolean {
+        return when (itemId) {
+            R.id.wordFragment,
+            R.id.learnedFragment,
+            R.id.addWordFragment,
+            R.id.gameFragment,
+            R.id.scoreFragment -> {
+                navController.navigate(itemId)
                 true
-                }
-                R.id.learnedFragment->{
-                    navController.navigate(R.id.learnedFragment)
-                    true
-                }
-                R.id.addWordFragment->{
-                    navController.navigate(R.id.addWordFragment)
-                    true
-                }
-                R.id.gameFragment->{
-                    navController.navigate(R.id.gameFragment)
-                    true
-                }
-                R.id.scoreFragment->{
-                    navController.navigate(R.id.scoreFragment)
-                    true
-                }
-
-                else -> false
             }
+
+            else -> false
         }
     }
 }
