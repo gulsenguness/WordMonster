@@ -21,7 +21,10 @@ class WordFragment : Fragment() {
     private val wordList = listOf(
         Word("Ephemeral", "Lasting for a very short time"),
         Word("Serendipity", "Finding something good without looking for it"),
-        Word("Petrichor", "The pleasant smell after rain")
+        Word("Petrichor", "The pleasant smell after rain"),
+        Word("Gunes", "The pleasant smell after rain"),
+        Word("Ay", "The pleasant smell after rain"),
+        Word("Ay", "The pleasant smell after rain"),
     )
 
     override fun onCreateView(
