@@ -27,6 +27,7 @@ class WordAdapter(private var wordList: List<Word>) :
         val word = wordList[position]
         holder.wordTitle.text = word.title
         holder.wordMeaning.text = word.meaning
+
     }
 
     fun updateWordList(newWordList: List<Word>) {
