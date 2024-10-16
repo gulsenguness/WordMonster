@@ -3,6 +3,7 @@ package com.gulsengunes.wordmonster.ui.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.gulsengunes.wordmonster.R
@@ -14,6 +15,7 @@ class WordAdapter(private var wordList: List<Word>) :
     inner class WordViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val wordTitle: TextView = itemView.findViewById(R.id.twWordTitle)
         val wordMeaning: TextView = itemView.findViewById(R.id.twWordMeaning)
+        val ivFavorite: ImageView = itemView.findViewById(R.id.ivFavorite)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WordViewHolder {
@@ -28,6 +30,16 @@ class WordAdapter(private var wordList: List<Word>) :
         holder.wordTitle.text = word.word
         holder.wordMeaning.text = word.meaning
 
+        if (word.favorite) {
+            holder.ivFavorite.setImageResource(R.drawable.ic_favorite)
+        } else {
+            holder.ivFavorite.setImageResource(R.drawable.ic_favorite_border)
+        }
+
+        holder.ivFavorite.setOnClickListener {
+            word.favorite = !word.favorite
+            notifyItemChanged(position)
+        }
     }
 
     fun updateWordList(newWordList: List<Word>) {
