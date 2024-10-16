@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "418388665833",
+    "project_id": "wordmonster-56003",
+    "storage_bucket": "wordmonster-56003.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:418388665833:android:94ad92a23932c671dd1778",
+        "android_client_info": {
+          "package_name": "com.gulsengunes.wordmonster"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyALZQShP9ntwAvfMEOJr1sEFJjhhOOIeEo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
