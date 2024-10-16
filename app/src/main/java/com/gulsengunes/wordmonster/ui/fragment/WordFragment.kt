@@ -1,6 +1,8 @@
 package com.gulsengunes.wordmonster.ui.fragment
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -29,6 +31,7 @@ class WordFragment : Fragment() {
         repository = WordRepository()
         setupRecyclerView()
         loadWords()
+        setupSearchBar()
         return binding.root
     }
 
@@ -43,6 +46,29 @@ class WordFragment : Fragment() {
             wordList = words
             wordAdapter.updateWordList(wordList)
         }
+    }
+
+    private fun setupSearchBar() {
+        binding.searchBar.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                filterWordList(s.toString())
+            }
+
+            override fun afterTextChanged(s: Editable?) {}
+        })
+    }
+
+    private fun filterWordList(query: String) {
+        val filteredList = if (query.isEmpty()) {
+            wordList
+        } else {
+            wordList.filter { word ->
+                word.word.startsWith(query, ignoreCase = true)
+            }
+        }
+        wordAdapter.updateWordList(filteredList)
     }
 
 }
