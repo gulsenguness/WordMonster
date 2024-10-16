@@ -25,7 +25,7 @@ class WordAdapter(private var wordList: List<Word>) :
 
     override fun onBindViewHolder(holder: WordViewHolder, position: Int) {
         val word = wordList[position]
-        holder.wordTitle.text = word.title
+        holder.wordTitle.text = word.word
         holder.wordMeaning.text = word.meaning
 
     }
