@@ -23,6 +23,22 @@ class WordAdapter(
         val wordMeaning: TextView = itemView.findViewById(R.id.twWordMeaning)
         val ivFavorite: ImageView = itemView.findViewById(R.id.ivFavorite)
         val learnedButton: Button = itemView.findViewById(R.id.btnLearned)
+
+        init {
+            learnedButton.setOnClickListener {
+                val position = adapterPosition
+                if (position != RecyclerView.NO_POSITION) {
+                    val word = wordList[position]
+                    learnedRepository.addLearnedWord(word.word)
+                    // Remove word from the list
+                    val updatedWordList = wordList.toMutableList()
+                    updatedWordList.removeAt(position)
+                    wordList = updatedWordList
+                    notifyItemRemoved(position)
+                    notifyItemRangeChanged(position, wordList.size)
+                }
+            }
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WordViewHolder {
@@ -48,16 +64,6 @@ class WordAdapter(
             notifyItemChanged(position)
         }
 
-        holder.learnedButton.setOnClickListener {
-            learnedRepository.addLearnedWord(word.word)
-            // Kelimeyi wordList'ten kaldır
-            val updatedWordList = wordList.toMutableList()
-            updatedWordList.removeAt(position)
-            wordList = updatedWordList
-            notifyItemRemoved(position) // RecyclerView'dan kelimeyi kaldır
-            notifyItemRangeChanged(position, wordList.size) // Güncellenen listeyi bildir
-
-        }
     }
 
     fun updateWordList(newWordList: List<Word>) {

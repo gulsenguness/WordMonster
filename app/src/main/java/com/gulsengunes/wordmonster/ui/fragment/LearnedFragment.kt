@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.gulsengunes.wordmonster.data.model.Word
 import com.gulsengunes.wordmonster.data.repository.LearnedRepository
@@ -30,8 +31,11 @@ class LearnedFragment : Fragment() {
     }
 
     private fun setupRecyclerView() {
-        learnedAdapter = LearnedAdapter(emptyList())
-        binding.recyclerLearned.layoutManager = LinearLayoutManager(requireContext())
+        learnedAdapter = LearnedAdapter(emptyList(),learnedRepository){word ->
+            learnedRepository.removeLearnedWord(word.word)
+            loadLearnedWords()
+        }
+        binding.recyclerLearned.layoutManager = GridLayoutManager(requireContext(), 2)
         binding.recyclerLearned.adapter = learnedAdapter
     }
 
@@ -42,5 +46,6 @@ class LearnedFragment : Fragment() {
         }
         learnedAdapter.updateLearnedWords(wordList)
     }
+
 
 }

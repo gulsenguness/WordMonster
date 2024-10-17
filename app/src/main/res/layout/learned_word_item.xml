@@ -48,6 +48,7 @@
             android:layout_weight="1" />
 
         <Button
+            android:id="@+id/unlearned"
             android:layout_width="90dp"
             android:layout_height="50dp"
             android:layout_gravity="center"
