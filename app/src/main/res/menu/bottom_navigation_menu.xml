@@ -3,21 +3,21 @@
     <item
         android:id="@+id/wordFragment"
         android:title="Word"
-        android:icon="@drawable/ic_launcher_background" />
+        android:icon="@drawable/book" />
     <item
         android:id="@+id/learnedFragment"
         android:title="Learned"
-        android:icon="@drawable/ic_launcher_background" />
+        android:icon="@drawable/fav" />
     <item
         android:id="@+id/addWordFragment"
         android:title="Add Word"
-        android:icon="@drawable/ic_launcher_background" />
+        android:icon="@drawable/ekle" />
     <item
         android:id="@+id/gameFragment"
         android:title="Game"
-        android:icon="@drawable/ic_launcher_background" />
+        android:icon="@drawable/game" />
     <item
         android:id="@+id/scoreFragment"
         android:title="Score"
-        android:icon="@drawable/ic_launcher_background" />
+        android:icon="@drawable/scor" />
 </menu>

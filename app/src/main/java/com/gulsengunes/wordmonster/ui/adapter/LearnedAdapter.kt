@@ -14,7 +14,7 @@ class LearnedAdapter(
     private var learnedWords: List<Word>,
     private val learnedRepository: LearnedRepository,
     private val onUnlearned: (Word) -> Unit
-    ) :
+) :
     RecyclerView.Adapter<LearnedAdapter.LearnedViewHolder>() {
 
     inner class LearnedViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
