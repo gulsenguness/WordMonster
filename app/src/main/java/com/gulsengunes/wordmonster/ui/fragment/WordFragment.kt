@@ -8,11 +8,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.gulsengunes.wordmonster.R
 import com.gulsengunes.wordmonster.data.model.Word
+import com.gulsengunes.wordmonster.data.repository.LearnedRepository
 import com.gulsengunes.wordmonster.data.repository.WordRepository
-import com.gulsengunes.wordmonster.databinding.FragmentAddWordBinding
 import com.gulsengunes.wordmonster.databinding.FragmentWordBinding
 import com.gulsengunes.wordmonster.ui.adapter.WordAdapter
 
@@ -20,6 +18,7 @@ class WordFragment : Fragment() {
     private lateinit var binding: FragmentWordBinding
     private lateinit var wordAdapter: WordAdapter
     private lateinit var repository: WordRepository
+    private lateinit var learnedRepository: LearnedRepository
     private var wordList: List<Word> = emptyList()
 
 
@@ -29,14 +28,16 @@ class WordFragment : Fragment() {
     ): View? {
         binding = FragmentWordBinding.inflate(layoutInflater)
         repository = WordRepository()
+        learnedRepository = LearnedRepository(requireContext())
         setupRecyclerView()
         loadWords()
         setupSearchBar()
         return binding.root
     }
 
+
     private fun setupRecyclerView() {
-        wordAdapter = WordAdapter(wordList)
+        wordAdapter = WordAdapter(wordList, learnedRepository)
         binding.recyclerWord.layoutManager = GridLayoutManager(requireContext(), 2)
         binding.recyclerWord.adapter = wordAdapter
     }

@@ -1,7 +1,6 @@
 package com.gulsengunes.wordmonster.data.repository
 
 import com.google.firebase.firestore.FirebaseFirestore
-
 import com.gulsengunes.wordmonster.data.model.Word
 
 class WordRepository {
