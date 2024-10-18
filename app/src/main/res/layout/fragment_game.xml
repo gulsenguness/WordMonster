@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background_gradient"
     tools:context=".ui.fragment.GameFragment">
 
 
@@ -13,8 +14,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
         android:text="TextView"
-        android:textColor="@android:color/black"
-        android:textSize="18sp"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
@@ -25,6 +27,7 @@
         android:layout_width="253dp"
         android:layout_height="50dp"
         android:layout_marginTop="5dp"
+        android:background="@drawable/edittext_background"
         android:ems="10"
         android:hint="Enter Name"
         android:inputType="text"
@@ -36,10 +39,12 @@
 
     <Button
         android:id="@+id/start"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="@color/button"
         android:text="Submit"
+        android:textColor="@android:color/white"
         app:layout_constraintEnd_toEndOf="@+id/startword"
         app:layout_constraintStart_toStartOf="@+id/startword"
         app:layout_constraintTop_toBottomOf="@+id/startword" />
@@ -51,6 +56,9 @@
         android:layout_marginTop="100dp"
         android:text="Score: 0"
         android:textSize="18sp"
+        android:shadowColor="@android:color/black"
+        android:shadowRadius="4"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/start" />
@@ -60,8 +68,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:shadowColor="@android:color/black"
+        android:shadowRadius="4"
         android:text="Time Left: 10"
+        android:textColor="@color/black"
         android:textSize="18sp"
+        android:gravity="center"
         app:layout_constraintEnd_toEndOf="@+id/score"
         app:layout_constraintStart_toStartOf="@+id/score"
         app:layout_constraintTop_toBottomOf="@+id/score" />
