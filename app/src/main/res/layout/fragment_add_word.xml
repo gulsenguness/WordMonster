@@ -7,7 +7,7 @@
     tools:context=".ui.fragment.AddWordFragment">
 
     <EditText
-        android:id="@+id/editTextText"
+        android:id="@+id/editTextWord"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
@@ -22,7 +22,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editTextText2"
+        android:id="@+id/editTextMeaning"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
@@ -34,20 +34,23 @@
         android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/editTextText" />
+        app:layout_constraintTop_toBottomOf="@id/editTextWord" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btnaddWord"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
         android:layout_marginEnd="15dp"
         android:layout_marginTop="60dp"
         android:text="Add Word"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        android:backgroundTint="@color/button"
         android:padding="12dp"
         android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/editTextText2" />
+        app:layout_constraintTop_toBottomOf="@id/editTextMeaning" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

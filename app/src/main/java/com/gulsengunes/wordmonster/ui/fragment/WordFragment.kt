@@ -72,4 +72,5 @@ class WordFragment : Fragment() {
         wordAdapter.updateWordList(filteredList)
     }
 
+
 }

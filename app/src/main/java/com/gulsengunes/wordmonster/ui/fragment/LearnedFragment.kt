@@ -6,12 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.gulsengunes.wordmonster.data.model.Word
 import com.gulsengunes.wordmonster.data.repository.LearnedRepository
 import com.gulsengunes.wordmonster.databinding.FragmentLearnedBinding
 import com.gulsengunes.wordmonster.ui.adapter.LearnedAdapter
-import com.gulsengunes.wordmonster.ui.adapter.WordAdapter
+
 
 class LearnedFragment : Fragment() {
     private lateinit var binding: FragmentLearnedBinding
@@ -31,7 +30,7 @@ class LearnedFragment : Fragment() {
     }
 
     private fun setupRecyclerView() {
-        learnedAdapter = LearnedAdapter(emptyList(),learnedRepository){word ->
+        learnedAdapter = LearnedAdapter(emptyList(), learnedRepository) { word ->
             learnedRepository.removeLearnedWord(word.word)
             loadLearnedWords()
         }

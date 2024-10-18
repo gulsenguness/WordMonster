@@ -57,7 +57,7 @@
             android:paddingVertical="8dp"
             android:text="Learned"
             android:textColor="@color/white"
-            android:textSize="8sp"
+            android:textSize="10sp"
             app:cornerRadius="20dp" />
     </LinearLayout>
 
