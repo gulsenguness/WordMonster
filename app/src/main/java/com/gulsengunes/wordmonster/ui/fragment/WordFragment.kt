@@ -45,6 +45,8 @@ class WordFragment : Fragment() {
     private fun loadWords() {
         repository.getWords { words ->
             wordList = words
+            val learnedWords = learnedRepository.getAllLearnedWords()
+            wordList = wordList.filter { word -> !learnedWords.contains(word.word) }
             wordAdapter.updateWordList(wordList)
         }
     }
@@ -62,11 +64,12 @@ class WordFragment : Fragment() {
     }
 
     private fun filterWordList(query: String) {
+        val learnedWords = learnedRepository.getAllLearnedWords()
         val filteredList = if (query.isEmpty()) {
             wordList
         } else {
-            wordList.filter { word ->
-                word.word.startsWith(query, ignoreCase = true)
+            wordList.filter {
+                it.word.startsWith(query, ignoreCase = true) && !learnedWords.contains(it.word)
             }
         }
         wordAdapter.updateWordList(filteredList)
