@@ -45,6 +45,4 @@ class LearnedFragment : Fragment() {
         }
         learnedAdapter.updateLearnedWords(wordList)
     }
-
-
 }
