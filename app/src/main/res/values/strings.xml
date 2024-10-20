@@ -1,5 +1,18 @@
 <resources>
     <string name="app_name">WordMonster</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="word_monster">Word Monster</string>
+    <string name="addword_enterword">Enter a new word</string>
+    <string name="addword_entermeaning">Enter the meaning of the word</string>
+    <string name="addword_word">Add Word</string>
+    <string name="baslik">Add a word you want to learn</string>
+    <string name="submit">Submit</string>
+    <string name="score">Score: 0</string>
+    <string name="time">Time Left: 10</string>
+    <string name="word_search">Search for words</string>
+    <string name="word_meaning">Word Meaning</string>
+    <string name="favori">Favorite</string>
+    <string name="delete">Delete</string>
+    <string name="unLearned">UnLearned</string>
+    <string name="title">Word Title</string>
+    <string name="learned">Learned</string>
 </resources>

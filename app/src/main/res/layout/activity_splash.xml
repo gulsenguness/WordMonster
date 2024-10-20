@@ -6,7 +6,6 @@
     android:gravity="center"
     android:orientation="vertical">
 
-    <!-- Logonuz veya bir resim -->
     <ImageView
         android:id="@+id/splashLogo"
         android:layout_width="168dp"
@@ -19,7 +18,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Word Monster"
+        android:text="@string/word_monster"
         android:textColor="@android:color/white"
         android:textSize="32sp"
         android:textStyle="bold" />

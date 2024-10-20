@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">WordMonster</string>
+    <string name="word_monster">Word Monster</string>
+    <string name="addword_enterword">Yeni bir kelime girin</string>
+    <string name="addword_entermeaning">Kelimenin anlamını girin</string>
+    <string name="addword_word">Kelime Ekle</string>
+    <string name="baslik">Öğrenmek istediğiniz bir kelimeyi ekleyin</string>
+    <string name="submit">Gönder</string>
+    <string name="score">Puan: 0</string>
+    <string name="time">Kalan zaman: 10</string>
+    <string name="word_search">Kelime ara</string>
+    <string name="word_meaning">Kelime Anlamı</string>
+    <string name="favori">Favori</string>
+    <string name="delete">Sil</string>
+    <string name="unLearned">Öğrenilmemiş</string>
+    <string name="title">Kelime Başlığı</string>
+    <string name="learned">Öğrenildi</string>
+</resources>
