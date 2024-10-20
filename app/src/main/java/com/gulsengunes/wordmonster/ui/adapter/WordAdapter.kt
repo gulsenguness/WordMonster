@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.firestore.FirebaseFirestore
 import com.gulsengunes.wordmonster.R
 import com.gulsengunes.wordmonster.data.model.Word
+import com.gulsengunes.wordmonster.data.repository.FavoriteRepository
 import com.gulsengunes.wordmonster.data.repository.LearnedRepository
 
 class WordAdapter(

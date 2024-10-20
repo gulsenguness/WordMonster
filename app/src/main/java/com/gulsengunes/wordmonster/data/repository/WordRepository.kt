@@ -17,4 +17,20 @@ class WordRepository {
                 onResult(emptyList())
             }
     }
+    fun getMeaningForWord(word: String, onResult: (String?) -> Unit) {
+        firestore.collection("words")
+            .whereEqualTo("word", word)
+            .get()
+            .addOnSuccessListener { documents ->
+                if (!documents.isEmpty) {
+                    val meaning = documents.first().getString("meaning")
+                    onResult(meaning)
+                } else {
+                    onResult(null)
+                }
+            }
+            .addOnFailureListener { exception ->
+                onResult(null)
+            }
+    }
 }

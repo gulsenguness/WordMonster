@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
 import com.gulsengunes.wordmonster.data.model.Word
+import com.gulsengunes.wordmonster.data.repository.FavoriteRepository
 import com.gulsengunes.wordmonster.data.repository.LearnedRepository
 import com.gulsengunes.wordmonster.data.repository.WordRepository
 import com.gulsengunes.wordmonster.databinding.FragmentWordBinding
