@@ -8,6 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.navigation.Navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.firestore.FirebaseFirestore
 import com.gulsengunes.wordmonster.R
 import com.gulsengunes.wordmonster.data.model.Word
 import com.gulsengunes.wordmonster.data.repository.LearnedRepository
@@ -23,6 +24,8 @@ class WordAdapter(
         val wordMeaning: TextView = itemView.findViewById(R.id.twWordMeaning)
         val ivFavorite: ImageView = itemView.findViewById(R.id.ivFavorite)
         val learnedButton: Button = itemView.findViewById(R.id.btnLearned)
+        val ivDelete: ImageView = itemView.findViewById(R.id.ivDelete)
+
 
         init {
             learnedButton.setOnClickListener {
@@ -30,7 +33,6 @@ class WordAdapter(
                 if (position != RecyclerView.NO_POSITION) {
                     val word = wordList[position]
                     learnedRepository.addLearnedWord(word.word)
-                    // Remove word from the list
                     val updatedWordList = wordList.toMutableList()
                     updatedWordList.removeAt(position)
                     wordList = updatedWordList
@@ -63,6 +65,8 @@ class WordAdapter(
             word.favorite = !word.favorite
             notifyItemChanged(position)
         }
+
+
 
     }
 

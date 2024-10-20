@@ -2,6 +2,7 @@ package com.gulsengunes.wordmonster.data.repository
 
 import android.content.SharedPreferences
 import android.content.Context
+import com.google.firebase.firestore.FirebaseFirestore
 
 class LearnedRepository(private val context: Context) {
     private val sharedPreferences: SharedPreferences =

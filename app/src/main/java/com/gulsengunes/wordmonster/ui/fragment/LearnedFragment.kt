@@ -41,7 +41,7 @@ class LearnedFragment : Fragment() {
     private fun loadLearnedWords() {
         learnedWords = learnedRepository.getAllLearnedWords()
         val wordList = learnedWords.map { wordString ->
-            Word(id = "", word = wordString, meaning = "", favorite = false)
+            Word(id = "", word = wordString.trim(), meaning = "", favorite = false)
         }
         learnedAdapter.updateLearnedWords(wordList)
     }
