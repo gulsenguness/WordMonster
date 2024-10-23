@@ -50,11 +50,30 @@ class LearnedFragment : Fragment() {
 
         for (wordString in learnedWords) {
             wordRepository.getMeaningForWord(wordString) { meaning ->
-                wordList.add(Word(id = "", word = wordString.trim(), meaning = meaning ?: "Anlam Bulunamadı", favorite = false))
+                val word = Word(
+                    id = "",
+                    word = wordString.trim(),
+                    meaning = meaning ?: "Anlam Bulunamadı",
+                    favorite = false
+                )
+                wordList.add(word)
+
                 if (wordList.size == learnedWords.size) {
                     learnedAdapter.updateLearnedWords(wordList)
                 }
             }
+        }
+
+        wordRepository.getWords { words ->
+            words.forEach { word ->
+                if (learnedWords.contains(word.word)) {
+                    val index = wordList.indexOfFirst { it.word == word.word }
+                    if (index != -1) {
+                        wordList[index] = word.copy()
+                    }
+                }
+            }
+            learnedAdapter.updateLearnedWords(wordList)
         }
     }
 
