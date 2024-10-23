@@ -9,13 +9,17 @@ class WordRepository {
     fun getWords(onResult: (List<Word>) -> Unit) {
         firestore.collection("words").get().addOnSuccessListener { documents ->
             val wordList = documents.map { doc ->
-                doc.toObject(Word::class.java)
+                Word(
+                    id = doc.id,
+                    word = doc.getString("word") ?: "",
+                    meaning = doc.getString("meaning") ?: "",
+                    favorite = doc.getBoolean("favorite") ?: false
+                )
             }
             onResult(wordList)
+        }.addOnFailureListener { exception ->
+            onResult(emptyList())
         }
-            .addOnFailureListener { exception ->
-                onResult(emptyList())
-            }
     }
     fun getMeaningForWord(word: String, onResult: (String?) -> Unit) {
         firestore.collection("words")

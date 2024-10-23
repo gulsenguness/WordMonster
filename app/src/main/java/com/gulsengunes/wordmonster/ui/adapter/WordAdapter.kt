@@ -1,11 +1,15 @@
 package com.gulsengunes.wordmonster.ui.adapter
 
+import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.navigation.Navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.firestore.FirebaseFirestore
@@ -41,6 +45,29 @@ class WordAdapter(
                     notifyItemRangeChanged(position, wordList.size)
                 }
             }
+            ivDelete.setOnClickListener {
+                val position = adapterPosition
+                if (position != RecyclerView.NO_POSITION) {
+                    val word = wordList[position]
+
+                    // Firestore'daki kelimenin ID'si ile silme işlemi
+                    FirebaseFirestore.getInstance().collection("words")
+                        .document(word.id) // ID'yi bu şekilde kullan
+                        .delete()
+                        .addOnSuccessListener {
+                            // Başarılı bir şekilde silindiğinde listenin güncellenmesi
+                            val updatedWordList = wordList.toMutableList()
+                            updatedWordList.removeAt(position)
+                            wordList = updatedWordList
+                            notifyItemRemoved(position)
+                            notifyItemRangeChanged(position, wordList.size)
+                        }
+                        .addOnFailureListener { e ->
+                            // Hata yönetimi
+                            Log.e("DeleteError", "Kelime silinirken hata oluştu", e)
+                        }
+                }
+                }
         }
     }
 
@@ -66,7 +93,6 @@ class WordAdapter(
             word.favorite = !word.favorite
             notifyItemChanged(position)
         }
-
 
 
     }

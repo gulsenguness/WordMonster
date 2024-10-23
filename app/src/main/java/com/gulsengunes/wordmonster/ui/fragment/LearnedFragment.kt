@@ -25,11 +25,14 @@ class LearnedFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentLearnedBinding.inflate(layoutInflater)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         learnedRepository = LearnedRepository(requireContext())
         wordRepository = WordRepository()
         setupRecyclerView()
         loadLearnedWords()
-        return binding.root
     }
 
     private fun setupRecyclerView() {
@@ -54,4 +57,5 @@ class LearnedFragment : Fragment() {
             }
         }
     }
+
 }
