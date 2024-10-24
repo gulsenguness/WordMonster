@@ -1,7 +1,4 @@
 
-🎯 Oyun Hedefi
-Kelime canavarını yenmek için ekranın üst kısmında beliren harfleri kullanarak mümkün olduğunca çok kelime oluşturmalısınız. Her kelime, canavarı biraz daha zayıflatır!
-
 # 🐉 WordMonster: Kelime Canavarıyla Eğlenceye Hazır Olun!
 
 Merhaba kelime avcıları! 🎉 WordMonster, kelimeleri keşfetmek için harika bir yol! Belirli bir süre içinde, verilen harflerden olabildiğince çok kelime oluşturarak canavarı besleyeceğiniz bu oyunda, kelime dağarcığınızı geliştirirken eğlenmeye hazır olun!
