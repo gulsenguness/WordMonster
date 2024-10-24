@@ -20,7 +20,8 @@ import com.gulsengunes.wordmonster.data.repository.LearnedRepository
 
 class WordAdapter(
     private var wordList: List<Word>,
-    private val learnedRepository: LearnedRepository
+    private val learnedRepository: LearnedRepository,
+    private val favoriteRepository: FavoriteRepository
 ) :
     RecyclerView.Adapter<WordAdapter.WordViewHolder>() {
 
@@ -45,17 +46,30 @@ class WordAdapter(
                     notifyItemRangeChanged(position, wordList.size)
                 }
             }
+            ivFavorite.setOnClickListener {
+                val position = adapterPosition
+                if (position != RecyclerView.NO_POSITION) {
+                    val word = wordList[position]
+                    word.favorite = !word.favorite // Favori durumunu tersine çevir
+                    if (word.favorite) {
+                        favoriteRepository.addFavoriteWord(word.word) // Favori kelimeyi ekle
+                        ivFavorite.setImageResource(R.drawable.ic_favorite) // Kalp dolu
+                    } else {
+                        favoriteRepository.removeFavoriteWord(word.word) // Favori kelimeyi kaldır
+                        ivFavorite.setImageResource(R.drawable.ic_favorite_border) // Kalp boş
+                    }
+                    notifyItemChanged(position)
+                }
+            }
             ivDelete.setOnClickListener {
                 val position = adapterPosition
                 if (position != RecyclerView.NO_POSITION) {
                     val word = wordList[position]
 
-                    // Firestore'daki kelimenin ID'si ile silme işlemi
                     FirebaseFirestore.getInstance().collection("words")
-                        .document(word.id) // ID'yi bu şekilde kullan
+                        .document(word.id)
                         .delete()
                         .addOnSuccessListener {
-                            // Başarılı bir şekilde silindiğinde listenin güncellenmesi
                             val updatedWordList = wordList.toMutableList()
                             updatedWordList.removeAt(position)
                             wordList = updatedWordList
@@ -63,7 +77,6 @@ class WordAdapter(
                             notifyItemRangeChanged(position, wordList.size)
                         }
                         .addOnFailureListener { e ->
-                            // Hata yönetimi
                             Log.e("DeleteError", "Kelime silinirken hata oluştu", e)
                         }
                 }

@@ -20,6 +20,7 @@ class WordFragment : Fragment() {
     private lateinit var wordAdapter: WordAdapter
     private lateinit var repository: WordRepository
     private lateinit var learnedRepository: LearnedRepository
+    private lateinit var favoriteRepository: FavoriteRepository
     private var wordList: List<Word> = emptyList()
 
 
@@ -29,6 +30,7 @@ class WordFragment : Fragment() {
     ): View? {
         binding = FragmentWordBinding.inflate(layoutInflater)
         repository = WordRepository()
+        favoriteRepository = FavoriteRepository(requireContext())
         learnedRepository = LearnedRepository(requireContext())
         setupRecyclerView()
         loadWords()
@@ -38,7 +40,7 @@ class WordFragment : Fragment() {
 
 
     private fun setupRecyclerView() {
-        wordAdapter = WordAdapter(wordList, learnedRepository)
+        wordAdapter = WordAdapter(wordList, learnedRepository, favoriteRepository)
         binding.recyclerWord.layoutManager = GridLayoutManager(requireContext(), 2)
         binding.recyclerWord.adapter = wordAdapter
     }

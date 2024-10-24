@@ -7,9 +7,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.activityViewModels
 import com.gulsengunes.wordmonster.data.model.Word
 import com.gulsengunes.wordmonster.data.repository.WordRepository
 import com.gulsengunes.wordmonster.databinding.FragmentGameBinding
+import com.gulsengunes.wordmonster.viewmodel.ScoreViewModel
 
 class GameFragment : Fragment() {
     private lateinit var binding: FragmentGameBinding
@@ -18,6 +20,8 @@ class GameFragment : Fragment() {
     private var score = 0
     private var timeLeft = 10
     private lateinit var timer: CountDownTimer
+    private val scoreViewModel: ScoreViewModel by activityViewModels()
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -58,6 +62,7 @@ class GameFragment : Fragment() {
             if (userInput.startsWith(lastChar, ignoreCase = true)) {
                 score++
                 binding.score.text = "Score: $score"
+                scoreViewModel.updateScore(score)
                 Toast.makeText(requireContext(), "The right word!", Toast.LENGTH_SHORT).show()
                 timer.cancel()
                 if (score >= 10) {

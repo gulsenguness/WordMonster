@@ -24,6 +24,7 @@ class LearnedAdapter(
         val wordTitle: TextView = itemView.findViewById(R.id.twWordTitle)
         val wordMeaning: TextView = itemView.findViewById(R.id.twWordMeaning)
         val unlearnedButton: Button = itemView.findViewById(R.id.unlearned)
+        val ivFavorite: ImageView = itemView.findViewById(R.id.ivFavorite)
         val ivDelete: ImageView = itemView.findViewById(R.id.ivDelete)
 
 
@@ -35,6 +36,7 @@ class LearnedAdapter(
                     onUnlearned(word)
                 }
             }
+
             ivDelete.setOnClickListener {
                 val position = adapterPosition
                 if (position != RecyclerView.NO_POSITION) {
@@ -71,6 +73,17 @@ class LearnedAdapter(
         val word = learnedWords[position]
         holder.wordTitle.text = word.word
         holder.wordMeaning.text = word.meaning
+
+        if (word.favorite) {
+            holder.ivFavorite.setImageResource(R.drawable.ic_favorite)
+        } else {
+            holder.ivFavorite.setImageResource(R.drawable.ic_favorite_border)
+        }
+
+        holder.ivFavorite.setOnClickListener {
+            word.favorite = !word.favorite
+            notifyItemChanged(position)
+        }
     }
 
     fun updateLearnedWords(newLearnedWords: List<Word>) {
