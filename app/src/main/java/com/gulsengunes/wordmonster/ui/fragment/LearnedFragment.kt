@@ -1,6 +1,8 @@
 package com.gulsengunes.wordmonster.ui.fragment
 
 import android.os.Bundle
+import android.speech.tts.TextToSpeech
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,14 +13,17 @@ import com.gulsengunes.wordmonster.data.repository.LearnedRepository
 import com.gulsengunes.wordmonster.data.repository.WordRepository
 import com.gulsengunes.wordmonster.databinding.FragmentLearnedBinding
 import com.gulsengunes.wordmonster.ui.adapter.LearnedAdapter
+import java.util.Locale
 
 
-class LearnedFragment : Fragment() {
+class LearnedFragment : Fragment(), TextToSpeech.OnInitListener {
     private lateinit var binding: FragmentLearnedBinding
     private lateinit var learnedRepository: LearnedRepository
     private lateinit var learnedAdapter: LearnedAdapter
     private lateinit var wordRepository: WordRepository
     private var learnedWords: Set<String> = emptySet()
+    private lateinit var tts: TextToSpeech
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,15 +36,16 @@ class LearnedFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         learnedRepository = LearnedRepository(requireContext())
         wordRepository = WordRepository()
+        tts = TextToSpeech(context, this)
         setupRecyclerView()
         loadLearnedWords()
     }
 
     private fun setupRecyclerView() {
-        learnedAdapter = LearnedAdapter(emptyList(), learnedRepository) { word ->
+        learnedAdapter = LearnedAdapter(emptyList(), learnedRepository, { word ->
             learnedRepository.removeLearnedWord(word.word)
             loadLearnedWords()
-        }
+        }, tts)
         binding.recyclerLearned.layoutManager = GridLayoutManager(requireContext(), 2)
         binding.recyclerLearned.adapter = learnedAdapter
     }
@@ -74,6 +80,17 @@ class LearnedFragment : Fragment() {
                 }
             }
             learnedAdapter.updateLearnedWords(wordList)
+        }
+    }
+
+    override fun onInit(status: Int) {
+        if (status == TextToSpeech.SUCCESS) {
+            val result = tts.setLanguage(Locale.US)
+            if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
+                Log.e("TTS", "Dil desteklenmiyor.")
+            }
+        } else {
+            Log.e("TTS", "Text-to-Speech başlatılamadı.")
         }
     }
 

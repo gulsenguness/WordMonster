@@ -1,6 +1,7 @@
 package com.gulsengunes.wordmonster.ui.adapter
 
 import android.content.Context
+import android.speech.tts.TextToSpeech
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -21,7 +22,8 @@ import com.gulsengunes.wordmonster.data.repository.LearnedRepository
 class WordAdapter(
     private var wordList: List<Word>,
     private val learnedRepository: LearnedRepository,
-    private val favoriteRepository: FavoriteRepository
+    private val favoriteRepository: FavoriteRepository,
+    private val tts: TextToSpeech
 ) :
     RecyclerView.Adapter<WordAdapter.WordViewHolder>() {
 
@@ -31,9 +33,14 @@ class WordAdapter(
         val ivFavorite: ImageView = itemView.findViewById(R.id.ivFavorite)
         val learnedButton: Button = itemView.findViewById(R.id.btnLearned)
         val ivDelete: ImageView = itemView.findViewById(R.id.ivDelete)
+        val ivListen: ImageView = itemView.findViewById(R.id.ivlisten)
 
 
         init {
+            ivListen.setOnClickListener {
+                val word = wordList[adapterPosition]
+                tts.speak(word.word, TextToSpeech.QUEUE_FLUSH, null, null)
+            }
             learnedButton.setOnClickListener {
                 val position = adapterPosition
                 if (position != RecyclerView.NO_POSITION) {
@@ -50,13 +57,13 @@ class WordAdapter(
                 val position = adapterPosition
                 if (position != RecyclerView.NO_POSITION) {
                     val word = wordList[position]
-                    word.favorite = !word.favorite // Favori durumunu tersine çevir
+                    word.favorite = !word.favorite
                     if (word.favorite) {
-                        favoriteRepository.addFavoriteWord(word.word) // Favori kelimeyi ekle
-                        ivFavorite.setImageResource(R.drawable.ic_favorite) // Kalp dolu
+                        favoriteRepository.addFavoriteWord(word.word)
+                        ivFavorite.setImageResource(R.drawable.ic_favorite)
                     } else {
-                        favoriteRepository.removeFavoriteWord(word.word) // Favori kelimeyi kaldır
-                        ivFavorite.setImageResource(R.drawable.ic_favorite_border) // Kalp boş
+                        favoriteRepository.removeFavoriteWord(word.word)
+                        ivFavorite.setImageResource(R.drawable.ic_favorite_border)
                     }
                     notifyItemChanged(position)
                 }

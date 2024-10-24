@@ -1,5 +1,6 @@
 package com.gulsengunes.wordmonster.ui.adapter
 
+import android.speech.tts.TextToSpeech
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -16,7 +17,9 @@ import com.gulsengunes.wordmonster.data.repository.LearnedRepository
 class LearnedAdapter(
     private var learnedWords: List<Word>,
     private val learnedRepository: LearnedRepository,
-    private val onUnlearned: (Word) -> Unit
+    private val onUnlearned: (Word) -> Unit,
+    private val tts: TextToSpeech
+
 ) :
     RecyclerView.Adapter<LearnedAdapter.LearnedViewHolder>() {
 
@@ -26,9 +29,17 @@ class LearnedAdapter(
         val unlearnedButton: Button = itemView.findViewById(R.id.unlearned)
         val ivFavorite: ImageView = itemView.findViewById(R.id.ivFavorite)
         val ivDelete: ImageView = itemView.findViewById(R.id.ivDelete)
+        val ivListen: ImageView = itemView.findViewById(R.id.ivlisten)
 
 
         init {
+            ivListen.setOnClickListener {
+                val position = adapterPosition
+                if (position != RecyclerView.NO_POSITION) {
+                    val word = learnedWords[position]
+                    tts.speak(word.word, TextToSpeech.QUEUE_FLUSH, null, null)
+                }
+            }
             unlearnedButton.setOnClickListener {
                 val position = adapterPosition
                 if (position != RecyclerView.NO_POSITION) {
